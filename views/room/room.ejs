@@ -1,0 +1,55 @@
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <!-- <div class="container">
+      <h2><%= room.name %></h2>
+      <p><%= room.admin %></p>
+      <a href="/room/delete/<%= room._id %>" class="delete">Delete</a>
+    </div> -->
+
+    <br />
+    <div class="card mx-auto width">
+      <div class="card-body bg-dark">
+        <% chats.forEach(chat => { %>
+        <ul class="list-group list-group-flush mb-2">
+          <li class="list-group-item">
+            <a href="/chat/delete/<%= chat._id %>" class="right text-muted"><i class="fas fa-trash"></i></a>
+
+            <em class="orange-color"> <%= chat.user %> </em>
+            <br />
+            <span class="px-5 text-primary"><b><%= chat.message %></b></span>
+            <br />
+            <small class="text-muted">
+              <%= formatDistanceToNow(new Date(chat.createdAt), { addSuffix: true }) %>    
+            </small>
+          </li>
+        </ul>
+        <% }) %>
+
+        <form method="POST" action="/chat">
+          <div class="row mt-4 align-items-end">
+            <div class="col-lg-10">
+              <input
+                type="text"
+                name="message"
+                class="form-control form-control-lg"
+                placeholder="Message"
+                required
+                autofocus
+              />
+            </div>
+            <div class="col-lg-2 mt-3">
+              <input
+                class="btn btn-lg btn-success w-100"
+                value="Send"
+                type="submit"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

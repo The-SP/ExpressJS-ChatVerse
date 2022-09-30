@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3",
+    "nodemon": "^2.0.20"
+  }
+}
