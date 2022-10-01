@@ -4,7 +4,6 @@
     <%- include('../partials/nav.ejs') %>
 
     <!-- <div class="container">
-      <h2><%= room.name %></h2>
       <p><%= room.admin %></p>
       <a href="/room/delete/<%= room._id %>" class="delete">Delete</a>
     </div> -->
@@ -13,21 +12,44 @@
     <div class="card mx-auto width">
       <div class="card-body bg-dark">
         <% chats.forEach(chat => { %>
-        <ul class="list-group list-group-flush mb-2">
+        <ul class="list-group list-group-flush mb-2 message-bold">
           <li class="list-group-item">
-            <a href="/chat/delete/<%= chat._id %>" class="right text-muted"><i class="fas fa-trash"></i></a>
-
-            <em class="orange-color"> <%= chat.user %> </em>
+            <% if (chat.user.username === user.username) { %>
+            <em class="right text-danger">
+              <% if (room.admin.username == chat.user.username) { %>
+              <i class="fas fa-crown"></i>
+              <% } %> <%= chat.user.username %>
+            </em>
             <br />
-            <span class="px-5 text-primary"><b><%= chat.message %></b></span>
+            <span class="right px-5 text-success"
+              ><%= chat.message %></span
+            >
+            <br />
+            <small class="right text-muted"
+              ><%= formatDistanceToNow(new Date(chat.createdAt), { addSuffix:
+              true }) %></small
+            >
+
+            <% } else { %>
+
+            <em class="orange-color">
+              <% if (room.admin.username == chat.user.username) { %>
+              <i class="fas fa-crown"></i>
+              <% } %> <%= chat.user.username %>
+            </em>
+            <br />
+            <span class="px-5 text-primary"><%= chat.message %></span>
             <br />
             <small class="text-muted">
-              <%= formatDistanceToNow(new Date(chat.createdAt), { addSuffix: true }) %>    
+              <%= formatDistanceToNow(new Date(chat.createdAt), { addSuffix:
+              true }) %>
             </small>
+            <% } %>
           </li>
         </ul>
         <% }) %>
 
+        <!-- New Message -->
         <form method="POST" action="/chat">
           <div class="row mt-4 align-items-end">
             <div class="col-lg-10">

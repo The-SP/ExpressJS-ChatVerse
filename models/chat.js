@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Room = require("./room")
-
 const chatSchema = new Schema(
   {
     message: {
@@ -10,10 +8,13 @@ const chatSchema = new Schema(
       required: true,
     },
     user: {
-        type: String,
-        default: "Anonymous",
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    room: { type: Schema.Types.ObjectId, ref: "Room"}
+    room: {
+      type: Schema.Types.ObjectId,
+      ref: "Room",
+    },
   },
   { timestamps: true }
 );

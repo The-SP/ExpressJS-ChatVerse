@@ -76,10 +76,23 @@ const logout_get = (req, res) => {
   res.redirect("/login");
 };
 
+// Anonymous is a user already created and anonymous login logs any user through this account
+const anonymous_login = async (req, res) => {
+  try {
+    const user = await User.login("Anonymous", "testing321");
+    // login and redirect
+    login_user(res, user._id);
+  } catch (err) {
+    const error = 'Anonymous login failed.'
+    res.render("auth/login", { error });
+  }
+};
+
 module.exports = {
   login_get,
   login_post,
   signup_get,
   signup_post,
   logout_get,
+  anonymous_login,
 };

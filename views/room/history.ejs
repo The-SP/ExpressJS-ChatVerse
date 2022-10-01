@@ -1,0 +1,30 @@
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <br />
+    <div class="card mx-auto width">
+      <div class="card-body bg-dark">
+        <% chats.forEach(chat => { %>
+        <ul class="list-group list-group-flush mb-2 message-bold">
+          <li class="list-group-item">
+            <em class="text-danger"><%= chat.user.username %></em>
+            <small class="right text-muted"><%= chat.room.name %></small>
+            <br />
+            <span class="px-5 text-success"><b><%= chat.message %></b></span>
+            <a href="/chat/delete/<%= chat._id %>" class="right text-muted"
+              ><i class="fas fa-trash"></i
+            ></a>
+            <br />
+            <small class="text-muted"
+              ><%= formatDistanceToNow(new Date(chat.createdAt), { addSuffix:
+              true }) %></small
+            >
+          </li>
+        </ul>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

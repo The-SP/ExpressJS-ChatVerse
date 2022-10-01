@@ -10,6 +10,9 @@ const room_create_post = async (req, res) => {
     res.redirect(`/room/${entered_room._id}`);
   } else {
     // Create new room and enter
+    req.body.admin = res.locals.user; // Add current user as admin
+    console.log("new room:", req.body.admin);
+    
     const room = new Room(req.body);
     room
       .save()
@@ -28,8 +31,9 @@ const room_index = (req, res) => {
 
 const room_details = async (req, res) => {
   const id = req.params.id;
-  const chats = await Chat.find({ room: id });
-  Room.findById(id)
+  const chats = await Chat.find({ room: id }).populate("user");
+
+  Room.findById(id).populate("admin")
     .then((result) =>
       res.render("room/room", { room: result, chats, formatDistanceToNow })
     )

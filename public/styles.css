@@ -4,7 +4,12 @@ body {
 }
 
 .orange-color {
-  color: orange;
+  color: rgb(255, 119, 0);
+}
+
+.message-bold em,
+.message-bold span {
+  font-weight: bold;
 }
 
 .right {

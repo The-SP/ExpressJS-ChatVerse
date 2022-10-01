@@ -7,10 +7,11 @@ const {
   room_details,
   room_delete,
 } = require("../controllers/roomController");
+const { requireAuth } = require("../middleware/authMiddleware");
 
-router.post("/create", room_create_post);
-router.get("/", room_index);
-router.get("/:id", room_details);
+router.post("/create", requireAuth, room_create_post);
+router.get("/", requireAuth, room_index);
+router.get("/:id", requireAuth, room_details);
 router.get("/delete/:id", room_delete);
 
 module.exports = router;

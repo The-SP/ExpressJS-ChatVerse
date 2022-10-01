@@ -8,8 +8,8 @@ const roomSchema = new Schema(
       required: true,
     },
     admin: {
-        type: String,
-        default: "Anonymous",
+        type: Schema.Types.ObjectId,
+        ref: "User",
     }
   },
   { timestamps: true }
