@@ -1,0 +1,57 @@
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="card mx-auto my-5" style="width: 25rem">
+      <div class="card-body">
+        <!-- display any errors in form submisson -->
+        <% if (typeof error !== 'undefined') { %>
+        <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+
+        <form method="POST" action="/signup">
+          <div class="form-group mb-4">
+            <input
+              type="text"
+              name="username"
+              class="form-control form-control-lg"
+              placeholder="Username"
+              required
+              autofocus
+            />
+          </div>
+          <div class="form-group mb-4">
+            <input
+              type="password"
+              name="password"
+              class="form-control form-control-lg"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="form-group mb-4">
+            <input
+              type="password"
+              name="password2"
+              class="form-control form-control-lg"
+              placeholder=" Confirm Password"
+              required
+            />
+          </div>
+          <input
+            class="btn btn-success w-100"
+            type="submit"
+            value="Create Account"
+          />
+        </form>
+        <div class="pt-3">
+          <small class="text-muted">
+            Already have an account?
+            <a class="ml-2" href="/login">Sign In</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

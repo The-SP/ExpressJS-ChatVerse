@@ -28,7 +28,7 @@ const room_index = (req, res) => {
 
 const room_details = async (req, res) => {
   const id = req.params.id;
-  const chats = await Chat.find({room: id});
+  const chats = await Chat.find({ room: id });
   Room.findById(id)
     .then((result) =>
       res.render("room/room", { room: result, chats, formatDistanceToNow })
