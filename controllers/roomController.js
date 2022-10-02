@@ -11,7 +11,7 @@ const room_create_post = async (req, res) => {
   } else {
     // Create new room and enter
     req.body.admin = res.locals.user; // Add current user as admin
-    console.log("new room:", req.body.admin);
+    // console.log("new room:", req.body.admin);
     
     const room = new Room(req.body);
     room

@@ -8,7 +8,7 @@ const signup_get = (req, res) => {
 };
 
 const signup_post = async (req, res) => {
-  console.log(req.body);
+  // console.log("SignUp form:", req.body);
   const { username, password, password2 } = req.body;
   // Check confirm password
   if (password !== password2) {
@@ -79,11 +79,11 @@ const logout_get = (req, res) => {
 // Anonymous is a user already created and anonymous login logs any user through this account
 const anonymous_login = async (req, res) => {
   try {
-    const user = await User.login("Anonymous", "testing321");
+    const user = await User.login("Anonymous", "testing");
     // login and redirect
     login_user(res, user._id);
   } catch (err) {
-    const error = 'Anonymous login failed.'
+    const error = "Anonymous login failed.";
     res.render("auth/login", { error });
   }
 };
